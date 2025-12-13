@@ -4,7 +4,7 @@
 @section('title', 'Menu - Kopi Paste')
 
 @section('content')
-<div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-16">
+<div class="bg-linear-to-r from-amber-600 to-orange-600 text-white py-16">
     <div class="max-w-7xl mx-auto px-4 text-center">
         <h1 class="text-5xl font-bold mb-4">Menu Kami</h1>
         <p class="text-xl text-amber-100">Pilihan kopi dan makanan terbaik untuk Anda</p>

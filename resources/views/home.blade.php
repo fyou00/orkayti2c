@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative bg-linear-to-r from-amber-600 to-orange-600 text-white">
+<section class="relative bg-gradient-to-r from-amber-600 to-orange-600 text-white">
     <div class="absolute inset-0 bg-black opacity-20"></div>
     <div class="relative max-w-7xl mx-auto px-4 py-32 text-center">
         <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">Selamat Datang di Kopi Paste</h1>
@@ -65,7 +65,7 @@
                 @if($menu->foto)
                     <img src="{{ Storage::url($menu->foto) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover">
                 @else
-                    <div class="w-full h-48 bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+                    <div class="w-full h-48 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
                         <i class="fas fa-utensils text-6xl text-white"></i>
                     </div>
                 @endif
@@ -88,7 +88,7 @@
 @endif
 
 <!-- CTA Section -->
-<section class="py-20 bg-linear-to-r from-amber-600 to-orange-600 text-white">
+<section class="py-20 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
     <div class="max-w-4xl mx-auto px-4 text-center">
         <h2 class="text-4xl font-bold mb-6">Siap Menikmati Kopi Terbaik?</h2>
         <p class="text-xl mb-8 text-amber-100">Kunjungi kami sekarang dan rasakan pengalaman kopi yang tak terlupakan</p>
