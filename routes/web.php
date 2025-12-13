@@ -5,7 +5,6 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicMenuController;
@@ -18,8 +17,8 @@ use App\Http\Controllers\Cashier\TransactionController;
 
 // ====== PUBLIC ROUTES (Tanpa Login) ======
 Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/menu', [PublicMenuController::class, 'index'])->name('menu.public');
-// Route::get('/tentang', [HomeController::class, 'about'])->name('about');
+Route::get('/menu', [PublicMenuController::class, 'index'])->name('menu.public');
+Route::get('/tentang', [HomeController::class, 'about'])->name('about');
 
 Route::middleware(['auth'])->group(function () {
   Route::redirect('settings', 'settings/profile');
@@ -28,16 +27,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('settings/password', Password::class)->name('user-password.edit');
   Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
 
-  Route::get('settings/two-factor', TwoFactor::class)
-    ->middleware(
-      when(
-        Features::canManageTwoFactorAuthentication()
-        && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
-        ['password.confirm'],
-        [],
-      ),
-    )
-    ->name('two-factor.show');
+  // Route::get('settings/two-factor', TwoFactor::class)->name('two-factor.show');
 });
 
 // ====== AUTH ROUTES ======
