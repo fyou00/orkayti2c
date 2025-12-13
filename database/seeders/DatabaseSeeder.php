@@ -21,17 +21,19 @@ class DatabaseSeeder extends Seeder
     //     'email' => 'test@example.com',
     // ]);
 
+    // Akun Demo Admin
     User::create([
-      'name' => 'Atmin',
-      'email' => 'admin@gmail.com',
-      'password' => Hash::make('admin1234'),
+      'name' => 'Admin Kopi Paste',
+      'email' => 'admin@kopipaste.com',
+      'password' => Hash::make('password'),
       'role' => 'admin',
     ]);
 
+    // Akun Demo Kasir
     User::create([
-      'name' => 'Kasir',
-      'email' => 'cashier@gmail.com',
-      'password' => Hash::make('kasirganteng'),
+      'name' => 'Kasir Kopi Paste',
+      'email' => 'kasir@kopipaste.com',
+      'password' => Hash::make('password'),
       'role' => 'cashier',
     ]);
   }
