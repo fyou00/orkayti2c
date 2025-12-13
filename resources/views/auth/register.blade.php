@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gradient-to-br from-amber-100 to-orange-100 min-h-screen flex items-center justify-center p-4">
+<body class="bg-linear-to-br from-amber-100 to-orange-100 min-h-screen flex items-center justify-center p-4">
     <div class="max-w-md w-full">
         <div class="text-center mb-8">
             <div class="bg-amber-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
