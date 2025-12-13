@@ -4,7 +4,7 @@
 @section('title', 'Tentang Kami - Kopi Paste')
 
 @section('content')
-<div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-16">
+<div class="bg-linear-to-r from-amber-600 to-orange-600 text-white py-16">
     <div class="max-w-7xl mx-auto px-4 text-center">
         <h1 class="text-5xl font-bold mb-4">Tentang Kopi Paste</h1>
         <p class="text-xl text-amber-100">Kenali lebih dekat dengan kami</p>

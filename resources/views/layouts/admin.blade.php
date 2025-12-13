@@ -11,7 +11,7 @@
 <body class="bg-gray-100">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gray-800 text-white flex-shrink-0 hidden md:block">
+        <aside class="w-64 bg-gray-800 text-white shrink-0 hidden md:block">
             <div class="p-6">
                 <h2 class="text-2xl font-bold"><i class="fas fa-coffee"></i> Kopi Paste</h2>
                 <p class="text-sm text-gray-400">Admin Panel</p>
