@@ -2,19 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Table;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Table;
 
-class TableSeeder extends Seeder
+class SeederMeja extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // Clear existing tables
-        Table::truncate();
-
         $tables = [
             // Meja kecil (2 orang)
             ['nomor' => 1, 'kapasitas' => 2, 'status' => 'tersedia'],
@@ -43,7 +41,5 @@ class TableSeeder extends Seeder
         foreach ($tables as $table) {
             Table::create($table);
         }
-
-        echo "✅ " . count($tables) . " tables created successfully!\n";
     }
 }
