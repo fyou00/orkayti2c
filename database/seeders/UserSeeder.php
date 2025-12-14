@@ -13,11 +13,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Hapus user lama jika ada
         User::where('email', 'admin@kopipaste.com')->delete();
         User::where('email', 'kasir@kopipaste.com')->delete();
 
-        // Akun Demo Admin
         User::create([
             'name' => 'Admin Kopi Paste',
             'email' => 'admin@kopipaste.com',
@@ -26,9 +24,6 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        echo "✅ Admin created: admin@kopipaste.com | password\n";
-
-        // Akun Demo Kasir
         User::create([
             'name' => 'Kasir Kopi Paste',
             'email' => 'kasir@kopipaste.com',
@@ -36,7 +31,5 @@ class UserSeeder extends Seeder
             'role' => 'cashier',
             'email_verified_at' => now(),
         ]);
-
-        echo "✅ Cashier created: kasir@kopipaste.com | password\n";
     }
 }

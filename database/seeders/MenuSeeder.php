@@ -7,7 +7,7 @@ use App\Models\Menu;
 use App\Models\Table;
 use Illuminate\Support\Facades\Hash;
 
-class SimpleTestSeeder extends Seeder
+class MenuSeeder extends Seeder
 {
     public function run(): void
     {        

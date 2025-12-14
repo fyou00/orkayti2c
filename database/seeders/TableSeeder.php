@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Table;
 
-class SeederMeja extends Seeder
+class TableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
