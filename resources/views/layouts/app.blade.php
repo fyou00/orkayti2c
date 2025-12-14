@@ -1,63 +1,81 @@
+{{-- resources/views/layouts/public.blade.php --}}
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Kopi Paste')</title>
+    <title>@yield('title', 'Kopi Paste - We\'ve got your morning covered')</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .font-script { font-family: 'Dancing Script', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Poppins', sans-serif; }
+        
+        .text-brown { color: #6B4423; }
+        .bg-cream { background: #FDF8F3; }
+        .bg-brown { background: #6B4423; }
+        .bg-coffee { background: rgb(255, 115, 0); }
+        
+        .btn-gold {
+            background: #E8B86D;
+            color: #3D2817;
+            transition: all 0.3s;
+        }
+        
+        .btn-gold:hover {
+            background: #D4A855;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(232, 184, 109, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+    </style>
+    @stack('styles')
 </head>
-<body class="bg-gray-50">
+<body class="font-sans">
+    
     <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <a href="{{ route('home') }}" class="text-2xl font-bold text-amber-800">
-                    <i class="fas fa-coffee"></i> Kopi Paste
-                </a>
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="{{ route('home') }}" class="font-script text-4xl text-white">Kopi Paste</a>
                 
-                <div class="hidden md:flex space-x-6">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-amber-600 transition">Beranda</a>
-                    <a href="{{ route('menu.public') }}" class="text-gray-700 hover:text-amber-600 transition">Menu</a>
-                    <a href="{{ route('about') }}" class="text-gray-700 hover:text-amber-600 transition">Tentang</a>
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{{ route('home') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('home') ? 'text-yellow-300 font-bold' : '' }}">Home</a>
+                    <a href="{{ route('menu.public') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('menu.public') ? 'text-yellow-300 font-bold' : '' }}">Menu</a>
+                    <a href="{{ route('about') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('about') ? 'text-yellow-300 font-bold' : '' }}">About Us</a>
+                    <a href="{{ route('about') }}#contact" class="text-white hover:text-yellow-300 transition">Contact Us</a>
                 </div>
-
-                <div class="flex gap-3">
-                    @auth
-                        @if(auth()->user()->isAdmin())
-                            <a href="{{ route('admin.dashboard') }}" class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 transition">
-                                Dashboard Admin
-                            </a>
-                        @elseif(auth()->user()->isCashier())
-                            <a href="{{ route('cashier.dashboard') }}" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition">
-                                Dashboard Kasir
-                            </a>
-                        @endif
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
-                            @csrf
-                            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
-                                Logout
-                            </button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700 transition">
-                            Login
-                        </a>
-                    @endauth
+                
+                <!-- Spacer -->
+                <div class="hidden md:flex space-x-4">
                 </div>
-
+                
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden" onclick="toggleMobileMenu()">
+                <button class="md:hidden text-white" onclick="toggleMobile()">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4">
-                <a href="{{ route('home') }}" class="block py-2 text-gray-700 hover:text-amber-600">Beranda</a>
-                <a href="{{ route('menu.public') }}" class="block py-2 text-gray-700 hover:text-amber-600">Menu</a>
-                <a href="{{ route('about') }}" class="block py-2 text-gray-700 hover:text-amber-600">Tentang</a>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brown">
+            <div class="px-6 py-4 space-y-4">
+                <a href="{{ route('home') }}" class="block text-white hover:text-yellow-300">Home</a>
+                <a href="{{ route('menu.public') }}" class="block text-white hover:text-yellow-300">Menu</a>
+                <a href="{{ route('about') }}" class="block text-white hover:text-yellow-300">About Us</a>
+                <a href="{{ route('about') }}#contact" class="block text-white hover:text-yellow-300">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -68,35 +86,96 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-20">
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <div class="grid md:grid-cols-3 gap-8">
+    <footer class="text-white py-16 bg-brown bg-cover bg-center" style="background-image: url('/images/fotter_image.png');">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
                 <div>
-                    <h3 class="text-xl font-bold mb-4"><i class="fas fa-coffee"></i> Kopi Paste</h3>
-                    <p class="text-gray-400">Tempat terbaik untuk menikmati kopi dan makanan lezat dengan suasana yang nyaman.</p>
+                    <h3 class="font-script text-4xl mb-4">Kopi Paste</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        Your perfect morning starts here. We serve the finest coffee with love and passion.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white text-brown rounded-full flex items-center justify-center hover:bg-yellow-300 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white text-brown rounded-full flex items-center justify-center hover:bg-yellow-300 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white text-brown rounded-full flex items-center justify-center hover:bg-yellow-300 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white text-brown rounded-full flex items-center justify-center hover:bg-yellow-300 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- About -->
                 <div>
-                    <h4 class="font-bold mb-4">Kontak</h4>
-                    <p class="text-gray-400"><i class="fas fa-map-marker-alt"></i> Jl. Kopi No. 123, Medan</p>
-                    <p class="text-gray-400"><i class="fas fa-phone"></i> 0812-3456-7890</p>
-                    <p class="text-gray-400"><i class="fas fa-envelope"></i> info@kopipaste.com</p>
+                    <h4 class="font-serif text-2xl font-bold mb-6">About</h4>
+                    <ul class="space-y-3">
+                        <li><a href="{{ route('menu.public') }}" class="text-gray-300 hover:text-yellow-300 transition">Menu</a></li>
+                        <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-yellow-300 transition">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">News & Blogs</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">Help & Supports</a></li>
+                    </ul>
                 </div>
+
+                <!-- Company -->
                 <div>
-                    <h4 class="font-bold mb-4">Jam Buka</h4>
-                    <p class="text-gray-400">Senin - Jumat: 08:00 - 22:00</p>
-                    <p class="text-gray-400">Sabtu - Minggu: 09:00 - 23:00</p>
+                    <h4 class="font-serif text-2xl font-bold mb-6">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">How we work</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">Terms of service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">Pricing</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">FAQ</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; {{ date('Y') }} Kopi Paste. All rights reserved.</p>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-serif text-2xl font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><i class="fas fa-map-marker-alt mr-2 text-yellow-300"></i> Jl. Kopi No. 123, Medan</li>
+                        <li><i class="fas fa-phone mr-2 text-yellow-300"></i> 0812-3456-7890</li>
+                        <li><i class="fas fa-envelope mr-2 text-yellow-300"></i> info@kopipaste.com</li>
+                        <li><i class="fas fa-clock mr-2 text-yellow-300"></i> 08:00 - 22:00</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        function toggleMobileMenu() {
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 600) {
+                navbar.classList.add('bg-brown', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-brown', 'shadow-lg');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobile() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
     </script>
+
+    @stack('scripts')
 </body>
 </html>

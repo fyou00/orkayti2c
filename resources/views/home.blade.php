@@ -1,5 +1,4 @@
-{{-- resources/views/home.blade.php --}}
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('title', 'Kopi Paste - We\'ve got your morning covered')
 

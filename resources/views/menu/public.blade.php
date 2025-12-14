@@ -1,5 +1,4 @@
-{{-- resources/views/menu/public.blade.php --}}
-@extends('layouts.public')
+@extends('layouts.app')
 
 @section('title', 'Menu - Kopi Paste')
 
