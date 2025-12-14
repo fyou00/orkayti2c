@@ -40,7 +40,7 @@ class OrderTransactionSeeder extends Seeder
             'Melissa', 'Xavier', 'Novaria', 'Julian', 'Joy',
             'Arlott', 'Nolan', 'Suyou', 'Zhuxin', 'Rafaela',
         ];
-        
+
         // Generate 15 orders dengan berbagai status
         for ($i = 1; $i <= 15; $i++) {
             // Random status dengan distribusi:
@@ -49,7 +49,7 @@ class OrderTransactionSeeder extends Seeder
             if ($rand <= 2) {
                 $status = 'menunggu';
                 $createdAt = now()->subMinutes(rand(5, 30));
-            } elseif ($rand <= 5) {
+            } elseif ($rand <= 13) {
                 $status = 'diproses';
                 $createdAt = now()->subMinutes(rand(20, 60));
             } else {
