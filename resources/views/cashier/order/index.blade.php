@@ -1,4 +1,3 @@
-{{-- resources/views/cashier/order/index.blade.php --}}
 @extends('layouts.cashier')
 
 @section('title', 'Daftar Pesanan')

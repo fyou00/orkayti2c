@@ -1,4 +1,3 @@
-{{-- resources/views/cashier/order/create.blade.php --}}
 @extends('layouts.cashier')
 
 @section('title', 'Buat Pesanan Baru')
@@ -100,8 +99,10 @@ function addItem(menuId, menuName, price) {
     const existingIndex = orderItems.findIndex(item => item.menuId === menuId);
     
     if (existingIndex !== -1) {
+        // Item sudah ada, tambah qty
         orderItems[existingIndex].qty++;
     } else {
+        // Item baru, tambahkan ke array
         orderItems.push({
             id: itemIdCounter++,
             menuId: menuId,
@@ -133,48 +134,60 @@ function updateQty(id, change) {
 
 function updateOrderDisplay() {
     const container = document.getElementById('orderItems');
-    const emptyMessage = document.getElementById('emptyMessage');
     const submitBtn = document.getElementById('submitBtn');
     
     if (orderItems.length === 0) {
-        emptyMessage.classList.remove('hidden');
         container.innerHTML = '<p class="text-gray-500 text-center py-4" id="emptyMessage">Belum ada item dipilih</p>';
         submitBtn.disabled = true;
         document.getElementById('totalPrice').textContent = 'Rp 0';
         return;
     }
     
-    emptyMessage.classList.add('hidden');
     submitBtn.disabled = false;
     
     let html = '';
     let total = 0;
+    let hiddenInputs = '';
     
-    orderItems.forEach(item => {
+    orderItems.forEach((item, index) => {
         const subtotal = item.price * item.qty;
         total += subtotal;
         
+        // Generate hidden inputs OUTSIDE the div (penting!)
+        hiddenInputs += `
+            <input type="hidden" name="items[${index}][menu_id]" value="${item.menuId}">
+            <input type="hidden" name="items[${index}][qty]" value="${item.qty}">
+        `;
+        
         html += `
-            <div class="flex justify-between items-center bg-gray-50 p-3 rounded">
+            <div class="flex justify-between items-center bg-gray-50 p-3 rounded mb-2">
                 <div class="flex-1">
                     <p class="font-bold text-sm">${item.name}</p>
                     <p class="text-xs text-gray-600">Rp ${item.price.toLocaleString('id-ID')}</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button type="button" onclick="updateQty(${item.id}, -1)" class="bg-gray-300 w-6 h-6 rounded flex items-center justify-center hover:bg-gray-400">-</button>
+                    <button type="button" onclick="updateQty(${item.id}, -1)" class="bg-gray-300 w-7 h-7 rounded flex items-center justify-center hover:bg-gray-400 font-bold">-</button>
                     <span class="font-bold w-8 text-center">${item.qty}</span>
-                    <button type="button" onclick="updateQty(${item.id}, 1)" class="bg-gray-300 w-6 h-6 rounded flex items-center justify-center hover:bg-gray-400">+</button>
-                    <button type="button" onclick="removeItem(${item.id})" class="text-red-600 ml-2">
+                    <button type="button" onclick="updateQty(${item.id}, 1)" class="bg-orange-500 text-white w-7 h-7 rounded flex items-center justify-center hover:bg-orange-600 font-bold">+</button>
+                    <button type="button" onclick="removeItem(${item.id})" class="text-red-600 ml-2 hover:text-red-800">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
-                <input type="hidden" name="items[${item.id}][menu_id]" value="${item.menuId}">
-                <input type="hidden" name="items[${item.id}][qty]" value="${item.qty}">
             </div>
         `;
     });
     
     container.innerHTML = html;
+    
+    // Inject hidden inputs ke dalam form (bukan ke container display!)
+    let hiddenContainer = document.getElementById('hiddenInputsContainer');
+    if (!hiddenContainer) {
+        hiddenContainer = document.createElement('div');
+        hiddenContainer.id = 'hiddenInputsContainer';
+        document.getElementById('orderForm').appendChild(hiddenContainer);
+    }
+    hiddenContainer.innerHTML = hiddenInputs;
+    
     document.getElementById('totalPrice').textContent = 'Rp ' + total.toLocaleString('id-ID');
 }
 
@@ -185,6 +198,15 @@ document.getElementById('searchMenu').addEventListener('input', function(e) {
         const text = item.textContent.toLowerCase();
         item.style.display = text.includes(search) ? 'block' : 'none';
     });
+});
+
+// Form submit validation
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    if (orderItems.length === 0) {
+        e.preventDefault();
+        alert('Silakan pilih minimal 1 menu!');
+        return false;
+    }
 });
 </script>
 @endpush
