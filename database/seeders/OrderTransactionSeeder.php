@@ -24,24 +24,23 @@ class OrderTransactionSeeder extends Seeder
         $tables = Table::where('status', 'tersedia')->get();
         $metodePembayaran = ['Tunai', 'Transfer', 'QRIS', 'Kartu Debit/Kredit'];
         
-        // Japanese names in romaji (easy to read)
-        $namaJepang = [
-            'Tanaka Yuki', 'Sato Haruto', 'Suzuki Aoi', 'Takahashi Ren', 
-            'Watanabe Hina', 'Ito Sota', 'Yamamoto Yui', 'Nakamura Riku',
-            'Kobayashi Mei', 'Kato Kaito', 'Yoshida Sakura', 'Yamada Hiroshi',
-            'Sasaki Akira', 'Yamaguchi Emi', 'Saito Daiki', 'Matsumoto Ayaka',
-            'Inoue Kenji', 'Kimura Miyu', 'Hayashi Yuto', 'Shimizu Nanami',
-            'Mori Tatsuya', 'Ikeda Kana', 'Hashimoto Shota', 'Yamashita Yuna',
-            'Ishikawa Ryo', 'Maeda Hikari', 'Fujita Kenta', 'Ogawa Rina'
+        // Character names from Genshin Impact & Mobile Legends
+        $characterNames = [
+            // Genshin Impact
+            'Zhongli', 'Raiden Shogun', 'Venti', 'Nahida', 'Furina',
+            'Neuvillette', 'Hu Tao', 'Ganyu', 'Kamisato Ayaka', 'Kaedehara Kazuha',
+            'Xiao', 'Yelan', 'Alhaitham', 'Nilou', 'Tighnari',
+            'Cyno', 'Kokomi', 'Yoimiya', 'Eula', 'Tartaglia',
+            
+            // Mobile Legends
+            'Fanny', 'Granger', 'Gusion', 'Ling', 'Lancelot',
+            'Chou', 'Kagura', 'Guinevere', 'Claude', 'Wanwan',
+            'Yin', 'Valentina', 'Beatrix', 'Paquito', 'Brody',
+            'Hayabusa', 'Grock', 'Khufra', 'Atlas', 'Layla',
+            'Melissa', 'Xavier', 'Novaria', 'Julian', 'Joy',
+            'Arlott', 'Nolan', 'Suyou', 'Zhuxin', 'Rafaela',
         ];
         
-        if ($menus->isEmpty()) {
-            echo "❌ No menus found. Please run MenuSeeder first.\n";
-            return;
-        }
-
-        echo "📝 Generating sample orders and transactions...\n";
-
         // Generate 15 orders dengan berbagai status
         for ($i = 1; $i <= 15; $i++) {
             // Random status dengan distribusi:
@@ -65,7 +64,7 @@ class OrderTransactionSeeder extends Seeder
 
             // Create order
             $order = Order::create([
-                'nama_pelanggan' => $faker->randomElement($namaJepang),
+                'nama_pelanggan' => $faker->randomElement($characterNames),
                 'table_id' => $tableId,
                 'status' => $status,
                 'total' => 0, // Will be calculated
@@ -109,9 +108,6 @@ class OrderTransactionSeeder extends Seeder
                     'updated_at' => $createdAt->addMinutes(rand(5, 15)),
                 ]);
             }
-
-            $statusIcon = $status === 'menunggu' ? '⏳' : ($status === 'diproses' ? '🔄' : '✅');
-            echo "{$statusIcon} Order #{$order->id}: {$order->nama_pelanggan} - {$order->items->count()} items - Rp " . number_format($total, 0, ',', '.') . " ({$status})\n";
         }
     }
 }
