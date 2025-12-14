@@ -7,6 +7,7 @@
 <div class="mb-6 flex justify-between items-center">
     <div>
         <form action="{{ route('cashier.order.index') }}" method="GET" class="flex gap-2">
+            <!-- Search Form -->
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama pelanggan..." class="border rounded px-4 py-2 w-64">
             <select name="status" class="border rounded px-4 py-2" onchange="this.form.submit()">
                 <option value="">Semua Status</option>
@@ -17,6 +18,7 @@
             <button type="submit" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
                 <i class="fas fa-search"></i>
             </button>
+            <!-- Search Form -->
         </form>
     </div>
     <a href="{{ route('cashier.order.create') }}" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-bold text-lg">
@@ -24,6 +26,7 @@
     </a>
 </div>
 
+<!-- Status Pesanan -->
 <div class="grid md:grid-cols-3 gap-6 mb-6">
     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
         <div class="flex items-center">
@@ -31,7 +34,7 @@
                 <i class="fas fa-clock text-white text-2xl"></i>
             </div>
             <div>
-                <p class="text-yellow-800 font-bold text-2xl">{{ $orders->where('status', 'menunggu')->count() }}</p>
+                <p class="text-yellow-800 font-bold text-2xl">{{ $countMenunggu }}</p>
                 <p class="text-yellow-700">Menunggu</p>
             </div>
         </div>
@@ -43,25 +46,27 @@
                 <i class="fas fa-shopping-cart text-white text-2xl"></i>
             </div>
             <div>
-                <p class="text-blue-800 font-bold text-2xl">{{ $orders->where('status', 'diproses')->count() }}</p>
+                <p class="text-blue-800 font-bold text-2xl">{{ $countDiproses }}</p>
                 <p class="text-blue-700">Diproses</p>
             </div>
         </div>
     </div>
-
+    
     <div class="bg-green-50 border border-green-200 rounded-lg p-4">
         <div class="flex items-center">
             <div class="bg-green-400 p-3 rounded-lg mr-4">
                 <i class="fas fa-check-circle text-white text-2xl"></i>
             </div>
             <div>
-                <p class="text-green-800 font-bold text-2xl">{{ $orders->where('status', 'selesai')->count() }}</p>
+                <p class="text-green-800 font-bold text-2xl">{{ $countSelesai }}</p>
                 <p class="text-green-700">Selesai</p>
             </div>
         </div>
     </div>
 </div>
+<!-- Status Pesanan -->
 
+<!-- List Pesanan -->
 <div class="bg-white rounded-lg shadow">
     @forelse($orders as $order)
     <div class="border-b p-6 hover:bg-gray-50 transition">
