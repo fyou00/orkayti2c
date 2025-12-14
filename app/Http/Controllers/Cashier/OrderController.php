@@ -20,9 +20,6 @@ class OrderController extends Controller
         // Filter by status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
-        } else {
-            // Default: show only active orders
-            $query->whereIn('status', ['menunggu', 'diproses']);
         }
 
         // Search by customer name
@@ -37,11 +34,20 @@ class OrderController extends Controller
 
         $orders = $query->latest()->paginate(20);
 
-        // Statistics for current view
-        $totalOrders = $query->count();
-        $totalPendapatan = $query->sum('total');
+        // Statistics untuk semua status (tidak terpengaruh filter)
+        $statsQuery = Order::query();
+        if ($request->filled('search')) {
+            $statsQuery->where('nama_pelanggan', 'like', '%' . $request->search . '%');
+        }
+        if ($request->filled('date')) {
+            $statsQuery->whereDate('created_at', $request->date);
+        }
 
-        return view('cashier.order.index', compact('orders', 'totalOrders', 'totalPendapatan'));
+        $countMenunggu = (clone $statsQuery)->where('status', 'menunggu')->count();
+        $countDiproses = (clone $statsQuery)->where('status', 'diproses')->count();
+        $countSelesai = (clone $statsQuery)->where('status', 'selesai')->count();
+
+        return view('cashier.order.index', compact('orders', 'countMenunggu', 'countDiproses', 'countSelesai'));
     }
 
     public function create()
