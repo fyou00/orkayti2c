@@ -38,7 +38,7 @@ class OrderTransactionSeeder extends Seeder
             'Yin', 'Valentina', 'Beatrix', 'Paquito', 'Brody',
             'Hayabusa', 'Grock', 'Khufra', 'Atlas', 'Layla',
             'Melissa', 'Xavier', 'Novaria', 'Julian', 'Joy',
-            'Arlott', 'Nolan', 'Suyou', 'Zhuxin', 'Rafaela',
+            'Arlott', 'Nolan'
         ];
 
         // Generate 15 orders dengan berbagai status

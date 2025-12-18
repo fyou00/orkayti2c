@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::where('email', 'kasir@kopipaste.com')->delete();
 
         User::create([
-            'name' => 'Admin Kopi Paste',
+            'name' => 'Sang Admin',
             'email' => 'admin@kopipaste.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Kasir Kopi Paste',
+            'name' => 'Sumanto',
             'email' => 'kasir@kopipaste.com',
             'password' => Hash::make('password'),
             'role' => 'cashier',
