@@ -33,7 +33,7 @@
     }
     
     .menu-card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-2px);
         box-shadow: 0 25px 50px rgba(107, 68, 35, 0.2);
     }
     
@@ -41,9 +41,9 @@
         transition: transform 0.4s ease;
     }
     
-    .menu-card:hover img {
+    /* .menu-card:hover img {
         transform: scale(1.1);
-    }
+    } */
     
     .badge-unavailable {
         position: absolute;
@@ -93,7 +93,7 @@
     <!-- Hero Section -->
     <section class="hero-menu pt-32 pb-20">
         <div class="relative max-w-7xl mx-auto px-6 text-center">
-            <h1 class="font-serif text-6xl md:text-7xl text-white font-bold mb-6">Our Menu</h1>
+            <h1 class="font-sans text-6xl md:text-7xl text-white font-bold mb-6">Our Menu</h1>
             <p class="text-white text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
                 Discover the finest selection of coffee and delights. Every cup tells a story, every bite brings joy.
             </p>
@@ -113,11 +113,11 @@
                 <div id="{{ Str::slug($kategori) }}" class="mb-20 scroll-mt-32">
                     <!-- Category Header -->
                     <div class="mb-12">
-                        <div class="flex items-center mb-4">
+                        <h2 class="font-sans text-5xl text-brown font-bold ml-6">{{ $kategori }}</h2>
+                        {{-- <div class="flex items-center mb-4">
                             <div class="h-1 w-16 bg-gradient-to-r from-brown to-yellow-600 rounded"></div>
-                            <h2 class="font-serif text-5xl text-brown font-bold ml-6">{{ $kategori }}</h2>
                         </div>
-                        <p class="text-gray-600 text-lg ml-22">Explore our selection of {{ strtolower($kategori) }}</p>
+                        <p class="text-gray-600 text-lg ml-22">Explore our selection of {{ strtolower($kategori) }}</p> --}}
                     </div>
                     
                     <!-- Menu Grid -->
@@ -150,7 +150,7 @@
                                 <div class="flex-grow">
                                     <!-- Title & Category -->
                                     <div class="mb-3">
-                                        <h3 class="font-serif text-xl text-brown font-bold mb-1 line-clamp-2">{{ $menu->nama }}</h3>
+                                        <h3 class="font-sans text-xl text-brown font-bold mb-1 line-clamp-2">{{ $menu->nama }}</h3>
                                         <p class="text-gray-500 text-sm">
                                             <i class="fas fa-tag mr-1"></i> {{ $menu->kategori }}
                                         </p>
@@ -158,11 +158,11 @@
                                     
                                     <!-- Price & Status -->
                                     <div class="mb-4">
-                                        <div class="font-serif text-2xl text-brown font-bold mb-2">
+                                        <div class="font-sans text-2xl text-brown font-bold mb-2">
                                             Rp {{ number_format($menu->harga, 0, ',', '.') }}
                                         </div>
                                         
-                                        @if($menu->status === 'tersedia')
+                                        {{-- @if($menu->status === 'tersedia')
                                             <span class="inline-flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
                                                 <i class="fas fa-check-circle mr-1"></i> Available
                                             </span>
@@ -170,7 +170,7 @@
                                             <span class="inline-flex items-center bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
                                                 <i class="fas fa-times-circle mr-1"></i> Not Available
                                             </span>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>
                                 

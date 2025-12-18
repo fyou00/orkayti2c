@@ -90,6 +90,10 @@
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
             
+            {{-- <button onclick="window.location.href='{{ route('cashier.transaction.show', $order->transaction) }}'" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700">
+                <i class="fas fa-print"></i> Cetak Struk
+            </button> --}}
+
             @if($order->status === 'menunggu')
                 <form action="{{ route('cashier.order.updateStatus', $order) }}" method="POST" class="inline">
                     @csrf

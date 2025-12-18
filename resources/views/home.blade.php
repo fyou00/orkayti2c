@@ -204,7 +204,7 @@
                     </div>
                     
                     <!-- Navigation Arrows -->
-                    <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
+                    {{-- <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
                         <button class="btn-gold w-12 h-12 rounded-lg flex items-center justify-center">
                             <i class="fas fa-arrow-left"></i>
                         </button>
@@ -213,7 +213,7 @@
                         <button class="btn-gold w-12 h-12 rounded-lg flex items-center justify-center">
                             <i class="fas fa-arrow-right"></i>
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

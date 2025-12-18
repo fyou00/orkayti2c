@@ -7,12 +7,13 @@
     <title>@yield('title', 'Kopi Paste - We\'ve got your morning covered')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .font-script { font-family: 'Dancing Script', cursive; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-sans { font-family: 'Poppins', sans-serif; }
-        
+        .font-google-sans { font-family: 'Google Sans', sans-serif; }
         .text-brown { color: #6B4423; }
         .bg-cream { background: #FDF8F3; }
         .bg-brown { background: #6B4423; }
