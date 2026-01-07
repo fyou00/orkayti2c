@@ -8,18 +8,16 @@ use App\Models\Transaction;
 use App\Models\Menu;
 use App\Models\Table;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
+use Carbon\Carbon;
 
 class OrderTransactionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * Generates random orders and transactions with Japanese names
+     * Generates realistic orders and transactions for 1-2 years with proper distribution
      */
     public function run(): void
     {
-        $faker = Faker::create('ja_JP'); // Japanese locale
-        
         $menus = Menu::where('status', 'tersedia')->get();
         $tables = Table::where('status', 'tersedia')->get();
         $metodePembayaran = ['Tunai', 'Transfer', 'QRIS', 'Kartu Debit/Kredit'];
@@ -41,73 +39,109 @@ class OrderTransactionSeeder extends Seeder
             'Arlott', 'Nolan'
         ];
 
-        // Generate 15 orders dengan berbagai status
-        for ($i = 1; $i <= 15; $i++) {
-            // Random status dengan distribusi:
-            // 20% menunggu, 30% diproses, 50% selesai
-            $rand = rand(1, 10);
-            if ($rand <= 2) {
-                $status = 'menunggu';
-                $createdAt = now()->subMinutes(rand(5, 30));
-            } elseif ($rand <= 13) {
-                $status = 'diproses';
-                $createdAt = now()->subMinutes(rand(20, 60));
+        // Generate data untuk 1 bulan (01/01/2026 - 31/01/2026)
+        $startDate = Carbon::create(2026, 1, 1, 0, 0, 0);
+        $endDate = Carbon::create(2026, 1, 31, 23, 59, 59);
+        
+        $currentDate = $startDate->copy();
+        $transactionCount = 0;
+
+        while ($currentDate <= $endDate) {
+            // Buat 5-20 transaksi per hari (realistic distribution)
+            // Lebih banyak di akhir pekan
+            $dayOfWeek = $currentDate->dayOfWeek; // 0 = Sunday, 6 = Saturday
+            $isWeekend = $dayOfWeek == 0 || $dayOfWeek == 6;
+            $isSpecialDay = in_array($currentDate->format('m-d'), ['01-01', '12-25', '06-01', '08-17']); // Special days
+            
+            // Tentukan jumlah transaksi
+            if ($isSpecialDay) {
+                $dailyTransactions = rand(25, 35);
+            } elseif ($isWeekend) {
+                $dailyTransactions = rand(18, 25);
             } else {
-                $status = 'selesai';
-                $createdAt = now()->subHours(rand(1, 72)); // 1-3 hari lalu
+                $dailyTransactions = rand(10, 18);
             }
 
-            // 30% chance untuk take away, 70% meja
-            $tableId = (rand(1, 10) <= 7 && $tables->isNotEmpty()) 
-                ? $tables->random()->id 
-                : null;
+            for ($t = 0; $t < $dailyTransactions; $t++) {
+                // Random waktu dalam sehari (6 AM - 10 PM)
+                $hour = rand(6, 21);
+                $minute = rand(0, 59);
+                $second = rand(0, 59);
+                
+                $orderTime = $currentDate->copy()->setTime($hour, $minute, $second);
+                
+                // 95% orders selesai (dengan transaksi), 5% pending
+                $isCompleted = rand(1, 100) <= 95;
+                $status = $isCompleted ? 'selesai' : 'menunggu';
 
-            // Create order
-            $order = Order::create([
-                'nama_pelanggan' => $faker->randomElement($characterNames),
-                'table_id' => $tableId,
-                'status' => $status,
-                'total' => 0, // Will be calculated
-                'created_at' => $createdAt,
-                'updated_at' => $createdAt,
-            ]);
+                // 35% chance untuk take away, 65% meja
+                $tableId = (rand(1, 100) <= 65 && $tables->isNotEmpty()) 
+                    ? $tables->random()->id 
+                    : null;
 
-            // Add 2-5 random items
-            $itemCount = rand(2, 5);
-            $total = 0;
-
-            for ($j = 0; $j < $itemCount; $j++) {
-                $menu = $menus->random();
-                $qty = rand(1, 3);
-                $harga = $menu->harga;
-                $subtotal = $qty * $harga;
-                $total += $subtotal;
-
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'menu_id' => $menu->id,
-                    'qty' => $qty,
-                    'harga' => $harga,
-                    'subtotal' => $subtotal,
-                    'created_at' => $createdAt,
-                    'updated_at' => $createdAt,
+                // Create order
+                $order = Order::create([
+                    'nama_pelanggan' => $characterNames[array_rand($characterNames)],
+                    'table_id' => $tableId,
+                    'status' => $status,
+                    'total' => 0,
+                    'created_at' => $orderTime,
+                    'updated_at' => $orderTime,
                 ]);
+
+                // Add 1-5 items (realistis, kebanyakan 1-3)
+                $itemCount = rand(1, 5);
+                $weights = [1 => 40, 2 => 35, 3 => 15, 4 => 7, 5 => 3];
+                foreach ($weights as $count => $weight) {
+                    if (rand(1, 100) <= $weight) {
+                        $itemCount = $count;
+                        break;
+                    }
+                }
+                
+                $total = 0;
+
+                for ($j = 0; $j < $itemCount; $j++) {
+                    $menu = $menus->random();
+                    $qty = rand(1, 3);
+                    $harga = $menu->harga;
+                    $subtotal = $qty * $harga;
+                    $total += $subtotal;
+
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'menu_id' => $menu->id,
+                        'qty' => $qty,
+                        'harga' => $harga,
+                        'subtotal' => $subtotal,
+                        'created_at' => $orderTime,
+                        'updated_at' => $orderTime,
+                    ]);
+                }
+
+                // Update total
+                $order->update(['total' => $total]);
+
+                // Jika completed, buat transaksi dengan waktu 5-15 menit kemudian
+                if ($isCompleted) {
+                    $transactionTime = $orderTime->copy()->addMinutes(rand(5, 15));
+                    
+                    Transaction::create([
+                        'order_id' => $order->id,
+                        'metode_pembayaran' => $metodePembayaran[array_rand($metodePembayaran)],
+                        'status_pembayaran' => 'Lunas',
+                        'total' => $total,
+                        'created_at' => $transactionTime,
+                        'updated_at' => $transactionTime,
+                    ]);
+                    
+                    $transactionCount++;
+                }
             }
 
-            // Update total
-            $order->update(['total' => $total]);
-
-            // Jika status selesai, buat transaksi
-            if ($status === 'selesai') {
-                Transaction::create([
-                    'order_id' => $order->id,
-                    'metode_pembayaran' => $faker->randomElement($metodePembayaran),
-                    'status_pembayaran' => 'Lunas',
-                    'total' => $total,
-                    'created_at' => $createdAt->addMinutes(rand(5, 15)),
-                    'updated_at' => $createdAt->addMinutes(rand(5, 15)),
-                ]);
-            }
+            $currentDate->addDay();
         }
+
+        $this->command->info("Generated {$transactionCount} realistic transactions for 1 month!");
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\PublicMenuController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\TableController as AdminTableController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\Cashier\DashboardController as CashierDashboardController;
 use App\Http\Controllers\Cashier\OrderController;
 use App\Http\Controllers\Cashier\TransactionController;
@@ -42,6 +43,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     
     // Table Management
     Route::resource('table', AdminTableController::class)->except(['show']);
+    
+    // Report Management
+    Route::get('/laporan', [AdminReportController::class, 'index'])->name('report.index');
+    Route::get('/laporan/print', [AdminReportController::class, 'print'])->name('report.print');
+    Route::get('/laporan/export', [AdminReportController::class, 'export'])->name('report.export');
 });
 
 // ====== CASHIER ROUTES (Role: cashier) ======

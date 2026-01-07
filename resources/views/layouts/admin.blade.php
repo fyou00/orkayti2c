@@ -30,6 +30,10 @@
                     <i class="fas fa-table w-6"></i>
                     <span>Kelola Meja</span>
                 </a>
+                <a href="{{ route('admin.report.index') }}" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition {{ request()->routeIs('admin.report.*') ? 'bg-gray-700 text-white' : '' }}">
+                    <i class="fas fa-chart-line w-6"></i>
+                    <span>Laporan Penjualan</span>
+                </a>
             </nav>
 
             <div class="absolute bottom-0 w-64 p-6 border-t border-gray-700">

@@ -66,7 +66,7 @@
 
                 <div class="border-t pt-4 mb-4">
                     <h4 class="font-bold mb-3">Item Pesanan</h4>
-                    <div id="orderItems" class="space-y-2 max-h-64 overflow-y-auto mb-4">
+                    <div id="orderItems" class="space-y-2 max-h-48 overflow-y-auto mb-4">
                         <p class="text-gray-500 text-center py-4" id="emptyMessage">Belum ada item dipilih</p>
                     </div>
                 </div>
