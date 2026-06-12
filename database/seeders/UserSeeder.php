@@ -13,20 +13,17 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::where('email', 'admin@kopipaste.com')->delete();
-        User::where('email', 'kasir@kopipaste.com')->delete();
-
         User::create([
             'name' => 'Sang Admin',
-            'email' => 'admin@kopipaste.com',
+            'email' => 'admin@orkayti2c.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
             'email_verified_at' => now(),
         ]);
 
         User::create([
-            'name' => 'Sumanto',
-            'email' => 'kasir@kopipaste.com',
+            'name' => 'Maila Aziza',
+            'email' => 'kasir@orkayti2c.com',
             'password' => Hash::make('password'),
             'role' => 'cashier',
             'email_verified_at' => now(),
