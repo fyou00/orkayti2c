@@ -18,8 +18,9 @@ use App\Http\Controllers\Cashier\TransactionController;
 
 // ====== PUBLIC ROUTES (Tanpa Login) ======
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/menu', [PublicMenuController::class, 'index'])->name('menu.public');
+Route::get('/menu', [PublicMenuController::class, 'index'])->name('menu');
 Route::get('/tentang', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::middleware(['auth'])->group(function () {
   Route::redirect('settings', 'settings/profile');
