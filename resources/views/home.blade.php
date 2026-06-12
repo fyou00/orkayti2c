@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kopi Paste - We\'ve got your morning covered')
+@section('title', 'ORKAY TI 2C - Coffee Shop')
 
 @push('styles')
 <style>
@@ -31,7 +31,7 @@
                 <p class="text-white text-lg mb-8 leading-relaxed">
                     It is best to start your day with a cup of coffee. Discover the best flavours coffee you will ever have. We provide the best for our customers.
                 </p>
-                <a href="{{ route('menu.public') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold inline-block">Order Now</a>
+                <a href="{{ route('menu') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold inline-block">Order Now</a>
             </div>
         </div>
     </section>
@@ -70,7 +70,7 @@
                         <h3 class="font-serif text-2xl text-brown font-bold mb-2">Cappuccino</h3>
                         <p class="text-gray-600 text-sm mb-2">Coffee 50% | Milk 50%</p>
                         <p class="text-brown text-2xl font-bold mb-4">Rp 18.000</p>
-                        <a href="{{ route('menu.public') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
+                        <a href="{{ route('menu') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                         <h3 class="font-serif text-2xl text-brown font-bold mb-2">Cafe Latte</h3>
                         <p class="text-gray-600 text-sm mb-2">Coffee 50% | Milk 50%</p>
                         <p class="text-brown text-2xl font-bold mb-4">Rp 18.000</p>
-                        <a href="{{ route('menu.public') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
+                        <a href="{{ route('menu') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@
                         <h3 class="font-serif text-2xl text-brown font-bold mb-2">Mocha</h3>
                         <p class="text-gray-600 text-sm mb-2">Coffee 50% | Milk 50%</p>
                         <p class="text-brown text-2xl font-bold mb-4">Rp 22.000</p>
-                        <a href="{{ route('menu.public') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
+                        <a href="{{ route('menu') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
                     </div>
                 </div>
 
@@ -103,13 +103,13 @@
                         <h3 class="font-serif text-2xl text-brown font-bold mb-2">Espresso</h3>
                         <p class="text-gray-600 text-sm mb-2">Coffee 50% | Milk 50%</p>
                         <p class="text-brown text-2xl font-bold mb-4">Rp 12.000</p>
-                        <a href="{{ route('menu.public') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
+                        <a href="{{ route('menu') }}" class="btn-gold px-6 py-2 rounded-full font-semibold inline-block w-full">Order Now</a>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-12">
-                <a href="{{ route('menu.public') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-bold inline-block">
+                <a href="{{ route('menu') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-bold inline-block">
                     View All Menu <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -161,7 +161,7 @@
             <div class="text-center">
                 <p class="text-gray-600 text-xl mb-6">Great ideas start with great coffee. Lets help you achieve that</p>
                 <h3 class="font-serif text-4xl text-brown font-bold mb-8">Get started today.</h3>
-                <a href="{{ route('menu.public') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold inline-block">Join Us</a>
+                <a href="{{ route('menu') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold inline-block">Join Us</a>
             </div>
         </div>
     </section>
@@ -174,7 +174,7 @@
                 <div class="text-white">
                     <h2 class="font-serif text-6xl font-bold mb-6">Get a chance to have an Amazing morning</h2>
                     <p class="text-xl mb-8 leading-relaxed">We are giving you are one time opportunity to experience a better life with coffee.</p>
-                    <a href="{{ route('menu.public') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold inline-block">Order Now</a>
+                    <a href="{{ route('menu') }}" class="btn-gold px-8 py-4 rounded-full text-lg font-semibold inline-block">Order Now</a>
                 </div>
                 <div class="flex justify-center">
                     <img src="/images/cup.png" alt="Coffee Cup" class="w-66 h-auto">
@@ -202,18 +202,6 @@
                         <h4 class="font-serif text-2xl text-brown font-bold">Monkey D. Luffy</h4>
                         <p class="text-gray-600">Project Manager</p>
                     </div>
-                    
-                    <!-- Navigation Arrows -->
-                    {{-- <div class="absolute left-4 top-1/2 transform -translate-y-1/2">
-                        <button class="btn-gold w-12 h-12 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                    </div>
-                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2">
-                        <button class="btn-gold w-12 h-12 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div> --}}
                 </div>
             </div>
         </div>

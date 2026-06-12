@@ -1,15 +1,101 @@
-{{-- resources/views/about.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Tentang Kami - Kopi Paste')
+@section('title', 'Tentang Kami - ORKAY TI 2C')
+
+@push('styles')
+<style>
+    .hero-menu {
+        background: linear-gradient(135deg, #6B4423 0%, #3D2817 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-menu::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/images/coffee_hero.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.15;
+    }
+    
+    .menu-card {
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .menu-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px rgba(107, 68, 35, 0.2);
+    }
+    
+    .menu-card img {
+        transition: transform 0.4s ease;
+    }
+    
+    .badge-unavailable {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(220, 38, 38, 0.95);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 12px;
+        z-index: 10;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    
+    .category-nav {
+        position: sticky;
+        top: 80px;
+        background: white;
+        z-index: 40;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .category-link {
+        transition: all 0.3s;
+        position: relative;
+    }
+    
+    .category-link.active {
+        color: #E8B86D;
+        font-weight: 700;
+    }
+    
+    .category-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: #E8B86D;
+    }
+</style>
+@endpush
 
 @section('content')
-<div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <h1 class="text-5xl font-bold mb-4">Tentang Kopi Paste</h1>
-        <p class="text-xl text-amber-100">Kenali lebih dekat dengan kami</p>
-    </div>
-</div>
+
+<!-- Hero Section -->
+    <section class="hero-menu pt-32 pb-20">
+        <div class="relative max-w-7xl mx-auto px-6 text-center">
+            <h1 class="font-sans text-6xl md:text-7xl text-white font-bold mb-6">Tentang Kami</h1>
+            <p class="text-white text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                Discover the finest selection of coffee and delights. Every cup tells a story, every bite brings joy.
+            </p>
+        </div>
+    </section>
 
 <div class="max-w-4xl mx-auto px-4 py-16">
     <!-- About Story -->
@@ -18,7 +104,7 @@
             <i class="fas fa-coffee text-amber-600"></i> Cerita Kami
         </h2>
         <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Kopi Paste adalah cafe yang didirikan dengan misi untuk menyajikan kopi berkualitas tinggi 
+            ORKAY TI 2C adalah cafe yang didirikan dengan misi untuk menyajikan kopi berkualitas tinggi 
             dengan suasana yang nyaman dan pelayanan yang ramah. Kami percaya bahwa setiap cangkir kopi 
             memiliki cerita yang unik, dan kami ingin berbagi cerita tersebut dengan Anda.
         </p>

@@ -54,9 +54,9 @@
                 <!-- Menu Desktop -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('home') ? 'text-yellow-300 font-bold' : '' }}">Home</a>
-                    <a href="{{ route('menu.public') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('menu.public') ? 'text-yellow-300 font-bold' : '' }}">Menu</a>
+                    <a href="{{ route('menu') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('menu') ? 'text-yellow-300 font-bold' : '' }}">Menu</a>
                     <a href="{{ route('about') }}" class="text-white hover:text-yellow-300 transition {{ request()->routeIs('about') ? 'text-yellow-300 font-bold' : '' }}">About Us</a>
-                    <a href="{{ route('about') }}#contact" class="text-white hover:text-yellow-300 transition">Contact Us</a>
+                    <a href="{{ route('contact') }}#contact" class="text-white hover:text-yellow-300 transition">Contact Us</a>
                 </div>
                 
                 <!-- Spacer -->
@@ -74,9 +74,9 @@
         <div id="mobileMenu" class="hidden md:hidden bg-brown">
             <div class="px-6 py-4 space-y-4">
                 <a href="{{ route('home') }}" class="block text-white hover:text-yellow-300">Home</a>
-                <a href="{{ route('menu.public') }}" class="block text-white hover:text-yellow-300">Menu</a>
+                <a href="{{ route('menu') }}" class="block text-white hover:text-yellow-300">Menu</a>
                 <a href="{{ route('about') }}" class="block text-white hover:text-yellow-300">About Us</a>
-                <a href="{{ route('about') }}#contact" class="block text-white hover:text-yellow-300">Contact Us</a>
+                <a href="{{ route('contact') }}#contact" class="block text-white hover:text-yellow-300">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -116,7 +116,7 @@
                 <div>
                     <h4 class="font-serif text-2xl font-bold mb-6">About</h4>
                     <ul class="space-y-3">
-                        <li><a href="{{ route('menu.public') }}" class="text-gray-300 hover:text-yellow-300 transition">Menu</a></li>
+                        <li><a href="{{ route('menu') }}" class="text-gray-300 hover:text-yellow-300 transition">Menu</a></li>
                         <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-yellow-300 transition">About Us</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">News & Blogs</a></li>
                         <li><a href="#" class="text-gray-300 hover:text-yellow-300 transition">Help & Supports</a></li>

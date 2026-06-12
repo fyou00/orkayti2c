@@ -41,10 +41,6 @@
         transition: transform 0.4s ease;
     }
     
-    /* .menu-card:hover img {
-        transform: scale(1.1);
-    } */
-    
     .badge-unavailable {
         position: absolute;
         top: 12px;
@@ -114,10 +110,6 @@
                     <!-- Category Header -->
                     <div class="mb-12">
                         <h2 class="font-sans text-5xl text-brown font-bold ml-6">{{ $kategori }}</h2>
-                        {{-- <div class="flex items-center mb-4">
-                            <div class="h-1 w-16 bg-gradient-to-r from-brown to-yellow-600 rounded"></div>
-                        </div>
-                        <p class="text-gray-600 text-lg ml-22">Explore our selection of {{ strtolower($kategori) }}</p> --}}
                     </div>
                     
                     <!-- Menu Grid -->
@@ -125,13 +117,13 @@
                         @foreach($menus as $menu)
                         <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg">
                             <!-- Image Container - Fixed Height -->
-                            <div class="relative h-56 overflow-hidden bg-gray-200 flex-shrink-0">
+                            <div class="relative h-56 overflow-hidden bg-gray-200 shrink-0">
                                 @if($menu->foto)
                                     <img src="{{ Storage::url($menu->foto) }}" 
                                          alt="{{ $menu->nama }}" 
                                          class="w-full h-full object-cover">
                                 @else
-                                    <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-200 to-orange-300">
+                                    <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-amber-200 to-orange-300">
                                         <i class="fas fa-coffee text-6xl text-brown opacity-50"></i>
                                     </div>
                                 @endif
@@ -145,9 +137,9 @@
                             </div>
                             
                             <!-- Content Container - Flex Grow -->
-                            <div class="p-6 flex flex-col flex-grow">
+                            <div class="p-6 flex flex-col grow">
                                 <!-- Menu Info - Flex Grow to Push Button Down -->
-                                <div class="flex-grow">
+                                <div class="grow">
                                     <!-- Title & Category -->
                                     <div class="mb-3">
                                         <h3 class="font-sans text-xl text-brown font-bold mb-1 line-clamp-2">{{ $menu->nama }}</h3>
@@ -161,16 +153,6 @@
                                         <div class="font-sans text-2xl text-brown font-bold mb-2">
                                             Rp {{ number_format($menu->harga, 0, ',', '.') }}
                                         </div>
-                                        
-                                        {{-- @if($menu->status === 'tersedia')
-                                            <span class="inline-flex items-center bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                                <i class="fas fa-check-circle mr-1"></i> Available
-                                            </span>
-                                        @else
-                                            <span class="inline-flex items-center bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">
-                                                <i class="fas fa-times-circle mr-1"></i> Not Available
-                                            </span>
-                                        @endif --}}
                                     </div>
                                 </div>
                                 
@@ -213,25 +195,25 @@
 
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">1</div>
+                    <div class="w-20 h-20 mx-auto mb-6 bg-linear-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">1</div>
                     <h3 class="font-serif text-2xl text-brown font-bold mb-3">Browse Menu</h3>
                     <p class="text-gray-600">Choose from our wide selection of coffee and food</p>
                 </div>
                 
                 <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">2</div>
+                    <div class="w-20 h-20 mx-auto mb-6 bg-linear-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">2</div>
                     <h3 class="font-serif text-2xl text-brown font-bold mb-3">Visit Our Cafe</h3>
                     <p class="text-gray-600">Come to our location and place your order</p>
                 </div>
                 
                 <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">3</div>
+                    <div class="w-20 h-20 mx-auto mb-6 bg-linear-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">3</div>
                     <h3 class="font-serif text-2xl text-brown font-bold mb-3">Order at Counter</h3>
                     <p class="text-gray-600">Our friendly cashier will assist you</p>
                 </div>
                 
                 <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">4</div>
+                    <div class="w-20 h-20 mx-auto mb-6 bg-linear-to-br from-brown to-yellow-700 rounded-full flex items-center justify-center text-white text-3xl font-bold">4</div>
                     <h3 class="font-serif text-2xl text-brown font-bold mb-3">Enjoy!</h3>
                     <p class="text-gray-600">Sit back, relax, and enjoy your coffee</p>
                 </div>
@@ -249,7 +231,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-brown to-yellow-800">
+    <section class="py-20 bg-linear-to-r from-brown to-yellow-800">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="font-serif text-5xl text-white font-bold mb-6">Ready to Order?</h2>
             <p class="text-white text-xl mb-8">Visit us today and experience the best coffee in town</p>
