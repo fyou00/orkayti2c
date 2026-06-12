@@ -12,31 +12,17 @@ use Carbon\Carbon;
 
 class OrderTransactionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     * Generates realistic orders and transactions for 1-2 years with proper distribution
-     */
     public function run(): void
     {
         $menus = Menu::where('status', 'tersedia')->get();
         $tables = Table::where('status', 'tersedia')->get();
         $metodePembayaran = ['Tunai', 'Transfer', 'QRIS', 'Kartu Debit/Kredit'];
         
-        // Character names from Genshin Impact & Mobile Legends
-        $characterNames = [
-            // Genshin Impact
-            'Zhongli', 'Raiden Shogun', 'Venti', 'Nahida', 'Furina',
-            'Neuvillette', 'Hu Tao', 'Ganyu', 'Kamisato Ayaka', 'Kaedehara Kazuha',
-            'Xiao', 'Yelan', 'Alhaitham', 'Nilou', 'Tighnari',
-            'Cyno', 'Kokomi', 'Yoimiya', 'Eula', 'Tartaglia',
-            
-            // Mobile Legends
-            'Fanny', 'Granger', 'Gusion', 'Ling', 'Lancelot',
-            'Chou', 'Kagura', 'Guinevere', 'Claude', 'Wanwan',
-            'Yin', 'Valentina', 'Beatrix', 'Paquito', 'Brody',
-            'Hayabusa', 'Grock', 'Khufra', 'Atlas', 'Layla',
-            'Melissa', 'Xavier', 'Novaria', 'Julian', 'Joy',
-            'Arlott', 'Nolan'
+        $mhsNames = [
+            'Ahmad Aulia Fahlevi', 'Alvi Syahril', 'Faizul Abrar', 'Hafidz Maulana', 'Hayzar Muhaiyar', 
+            'Faqriyadi Andika', 'Fathan Mubina', 'Hamizan Putra Zulia', 'Ilham Syahdienar', 'Imam Nawawi', 
+            'M. Hafidz Firansyah', 'M. Iqbal Sayuti', 'Izzati Nurvira', 'Jelita Anggraini', 'Khairatil Aini', 
+            'Khalisha Zafira', 'Lediana Berasa', 'Liza Aulia Siregar', 'Malia Ulfa', 'Fariz Hafiz', 'Amirullah'
         ];
 
         // Generate data untuk 1 bulan (01/01/2026 - 31/01/2026)
@@ -81,7 +67,7 @@ class OrderTransactionSeeder extends Seeder
 
                 // Create order
                 $order = Order::create([
-                    'nama_pelanggan' => $characterNames[array_rand($characterNames)],
+                    'nama_pelanggan' => $mhsNames[array_rand($mhsNames)],
                     'table_id' => $tableId,
                     'status' => $status,
                     'total' => 0,
