@@ -16,6 +16,6 @@ class PublicMenuController extends Controller
         // Get all unique categories
         $categories = Menu::select('kategori')->distinct()->orderBy('kategori')->pluck('kategori');
         
-        return view('menu.public', compact('menusByCategory', 'categories'));
+        return view('menu', compact('menusByCategory', 'categories'));
     }
 }
