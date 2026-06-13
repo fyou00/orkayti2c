@@ -25,9 +25,9 @@ class OrderTransactionSeeder extends Seeder
             'Khalisha Zafira', 'Lediana Berasa', 'Liza Aulia Siregar', 'Malia Ulfa', 'Fariz Hafiz', 'Amirullah'
         ];
 
-        // Generate data untuk 1 bulan (01/01/2026 - 31/01/2026)
-        $startDate = Carbon::create(2026, 1, 1, 0, 0, 0);
-        $endDate = Carbon::create(2026, 1, 31, 23, 59, 59);
+        // Generate data untuk 1 bulan (01/06/2026 - 30/06/2026)
+        $startDate = Carbon::create(2026, 6, 12, 0, 0, 0);
+        $endDate = Carbon::create(2026, 6, 30, 23, 59, 59);
         
         $currentDate = $startDate->copy();
         $transactionCount = 0;
